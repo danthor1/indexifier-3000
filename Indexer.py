@@ -45,23 +45,16 @@ def getLinkWordRefs(link):
     global IDS, TAGS
     
     req = requests.get(link)
-
     soup = BS(str(req.content), 'lxml')
-
     nodes = soup.findAll()
-
     docId = IDS[link]
-
     foundTags = TAGS & getTags(nodes)
-
     targets = [node for node in nodes if node.name in foundTags]
-
     nodesText = [str(targ.getText()) for targ in targets]
-
     words = extractAllWords(nodesText)
-
     updateRefs(docId, words)
 
+#comment
 
 if(__name__=="__main__"):
     import sys
